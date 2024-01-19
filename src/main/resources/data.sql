@@ -3,8 +3,8 @@ CREATE TABLE `USERS` (
   `email` varchar(255),
   `name` varchar(255),
   `password` varchar(255),
-  `created_at` timestamp,
-  `updated_at` timestamp
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `RENTALS` (
@@ -15,8 +15,8 @@ CREATE TABLE `RENTALS` (
   `picture` varchar(255),
   `description` varchar(2000),
   `owner_id` integer NOT NULL,
-  `created_at` timestamp,
-  `updated_at` timestamp
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `MESSAGES` (
@@ -24,8 +24,8 @@ CREATE TABLE `MESSAGES` (
   `rental_id` integer,
   `user_id` integer,
   `message` varchar(2000),
-  `created_at` timestamp,
-  `updated_at` timestamp
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE UNIQUE INDEX `USERS_index` ON `USERS` (`email`);
