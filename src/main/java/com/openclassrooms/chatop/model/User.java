@@ -1,7 +1,6 @@
 package com.openclassrooms.chatop.model;
 
 import java.sql.Timestamp;
-import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
