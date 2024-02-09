@@ -41,4 +41,30 @@ public class RentalService {
         entityManager.refresh(rental);
         return rental;
     }
+
+    public Rental updateRental(final Integer id, Rental rentalUpdate) {
+        Rental rental = rentalRepository.findById(id).orElseThrow();
+
+        if (rentalUpdate.getName() != null) {
+            rental.setName(rentalUpdate.getName());
+        }
+        if (rentalUpdate.getSurface() != null) {
+            rental.setSurface(rentalUpdate.getSurface());
+        }
+        if (rentalUpdate.getPrice() != null) {
+            rental.setPrice(rentalUpdate.getPrice());
+        }
+        if (rentalUpdate.getPicture() != null) {
+            rental.setPicture(rentalUpdate.getPicture());
+        }
+        if (rentalUpdate.getDescription() != null) {
+            rental.setDescription(rentalUpdate.getDescription());
+        }
+        if (rentalUpdate.getOwner_id() != null) {
+            rental.setOwner_id(rentalUpdate.getOwner_id());
+        }
+
+        final Rental updatedRental = rentalRepository.save(rental);
+        return updatedRental;
+    }
 }

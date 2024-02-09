@@ -33,7 +33,6 @@ public class Rental {
     @Column(length = 2000)
     private String description;
 
-    @Column(nullable = false)
     private Integer owner_id;
 
     @Column(updatable = false, insertable = false)
