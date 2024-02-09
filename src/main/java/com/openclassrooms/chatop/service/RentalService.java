@@ -10,9 +10,7 @@ import com.openclassrooms.chatop.model.Rental;
 import com.openclassrooms.chatop.repository.RentalRepository;
 
 import jakarta.persistence.EntityManager;
-import lombok.Data;
 
-@Data
 @Service
 public class RentalService {
     

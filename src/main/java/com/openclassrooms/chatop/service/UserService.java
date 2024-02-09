@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 import com.openclassrooms.chatop.model.User;
 import com.openclassrooms.chatop.repository.UserRepository;
 
-import lombok.Data;
-
-@Data
 @Service
 public class UserService {
     
