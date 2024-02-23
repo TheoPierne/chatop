@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -33,12 +35,22 @@ public class Rental {
     @Column(length = 2000)
     private String description;
 
-    private Integer owner_id;
+    @ManyToOne()
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
     @Column(updatable = false, insertable = false)
     private Timestamp created_at;
 
     @Column(insertable = false)
     private Timestamp updated_at;
-    
+
+    public Rental(String name, BigDecimal surface, BigDecimal price, String picture, String description, User owner) {
+        this.name = name;
+        this.surface = surface;
+        this.price = price;
+        this.picture = picture;
+        this.description = description;
+        this.owner = owner;
+    }    
 }
