@@ -60,9 +60,6 @@ public class RentalService {
         if (rentalUpdate.getDescription() != null) {
             rental.setDescription(rentalUpdate.getDescription());
         }
-        if (rentalUpdate.getOwner_id() != null) {
-            rental.setOwner_id(rentalUpdate.getOwner_id());
-        }
 
         final Rental updatedRental = rentalRepository.save(rental);
         return updatedRental;

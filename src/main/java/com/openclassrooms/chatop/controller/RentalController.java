@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.openclassrooms.chatop.dto.RentalDTO;
 import com.openclassrooms.chatop.model.Rental;
+import com.openclassrooms.chatop.model.User;
 import com.openclassrooms.chatop.service.RentalService;
+import com.openclassrooms.chatop.service.UserService;
 import com.openclassrooms.chatop.util.ResponseHandler;
 
 
@@ -22,6 +25,9 @@ public class RentalController {
 
     @Autowired
     private RentalService rentalService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/rentals")
     public Iterable<Rental> getRentals() {
@@ -34,8 +40,17 @@ public class RentalController {
     }
 
     @PostMapping("/rentals")
-    public ResponseEntity<Object> createRental(@RequestBody Rental rental) {
-        Rental savedResponse = rentalService.saveRental(rental);
+    public ResponseEntity<Object> createRental(@RequestBody RentalDTO rental) {
+
+        Optional<User> optionalUser = userService.getUser(rental.getOwner_id());
+
+        if (optionalUser.isEmpty()) {
+            return ResponseHandler.generateResponse("An error occurred while loading the owner of the rental.", HttpStatus.NOT_FOUND, null);
+        }
+
+        Rental newRental = new Rental(rental.getName(), rental.getSurface(), rental.getPrice(), rental.getPicture(), rental.getDescription(), optionalUser.get());
+
+        Rental savedResponse = rentalService.saveRental(newRental);
 
         if (savedResponse != null) {
             return ResponseHandler.generateResponse("Rental created !", HttpStatus.OK, null);

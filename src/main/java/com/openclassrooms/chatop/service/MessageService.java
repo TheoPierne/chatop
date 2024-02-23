@@ -19,7 +19,7 @@ public class MessageService {
   private EntityManager entityManager;
 
   @Transactional
-  public Message saveMessage(Message message) {
+  public Message saveMessage(Message message) {    
     message = messageRepository.save(message);
 
     // On refresh l'objet message avant de le retourner, sinon "created_at" et "updated_at" auront pour valeur null
