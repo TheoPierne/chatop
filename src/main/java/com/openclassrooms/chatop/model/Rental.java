@@ -11,11 +11,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "rentals")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Rental {
 
     @Id
@@ -43,14 +47,5 @@ public class Rental {
     private Timestamp created_at;
 
     @Column(insertable = false)
-    private Timestamp updated_at;
-
-    public Rental(String name, BigDecimal surface, BigDecimal price, String picture, String description, User owner) {
-        this.name = name;
-        this.surface = surface;
-        this.price = price;
-        this.picture = picture;
-        this.description = description;
-        this.owner = owner;
-    }    
+    private Timestamp updated_at; 
 }

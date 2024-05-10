@@ -33,5 +33,4 @@ public class User {
 
     @Column(insertable = false)
     private Timestamp updated_at;
-
 }
